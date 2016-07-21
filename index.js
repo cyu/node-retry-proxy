@@ -15,7 +15,7 @@ function delayFor(attempt, maxDelay) {
   return result;
 }
 
-function neverRetryDefaultStrategy(originResponse, err) {
+function neverRetryDefaultStrategy() {
   return false;
 }
 
@@ -69,7 +69,7 @@ module.exports = function retryProxy(options) {
       proxyRequest.
         on('error', function(err) {
           error('socket error: %s %o', err.message, {retry: attempt, url: req.url, host: host.host});
-          if (retryable && shouldRetry(null, err)) {
+          if (retryable && shouldRetry(null, err, req)) {
             attemptRetry();
           } else {
             res.writeHead(500, {'Content-Type': 'text/plain', 'Content-Length': Buffer.byteLength(err.message)});
@@ -78,7 +78,7 @@ module.exports = function retryProxy(options) {
           }
         }).
         on('response', function(proxyResponse) {
-          if (retryable && shouldRetry(proxyResponse, null)) {
+          if (retryable && shouldRetry(proxyResponse, null, req)) {
             attemptRetry();
           } else {
             finishRequest(proxyResponse);
