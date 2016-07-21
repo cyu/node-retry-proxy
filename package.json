@@ -1,0 +1,23 @@
+{
+  "name": "retry-proxy",
+  "version": "0.0.0",
+  "description": "HTTP proxy that supports retries",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/cyu/node-retry-proxy.git"
+  },
+  "author": "Calvin Yu <me@sourcebender.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cyu/node-retry-proxy/issues"
+  },
+  "homepage": "https://github.com/cyu/node-retry-proxy#readme",
+  "dependencies": {
+    "connect": "^3.4.1",
+    "debug": "^2.2.0"
+  }
+}
